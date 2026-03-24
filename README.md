@@ -40,7 +40,7 @@
 conda create -n qwen_rag python=3.10 -y
 conda activate qwen_rag
 ```
-2. 安装依赖
+###2. 安装依赖
 ```bash
 pip install -r requirements.txt
 ```
@@ -61,7 +61,7 @@ sentence-transformers
 ```
 💡 如果你有 GPU，可以安装 GPU 版 bitsandbytes，但 Windows 下建议用 CPU 版。
 
-📊 数据准备
+## 📊 数据准备
 编辑 data.json，格式为：
 
 ```json
@@ -74,13 +74,13 @@ sentence-transformers
 提供了若干条示例数据（见项目内），你也可以根据自己的业务扩充。
 
 🔧 使用流程
-1. 数据预处理
+### 1. 数据预处理
 ```bash
 python data_process.py
 ```
 会生成 tokenized_data/ 目录，里面包含训练集和验证集。
 
-2. LoRA 微调（CPU 版）
+### 2. LoRA 微调（CPU 版）
 ```bash
 python lora_finetune_cpu.py
 ```
@@ -88,7 +88,7 @@ python lora_finetune_cpu.py
 
 ⚠️ 说明：此部分仅作为对 baseLM 与 LoRA 组合的尝试，数据量较小，效果有限。若想获得更好效果，建议扩充数据或使用 GPU 版 bitsandbytes 进行 4-bit QLoRA 训练。
 
-3. 合并模型并推理
+### 3. 合并模型并推理
 ```bash
 python inference.py
 ```
@@ -97,7 +97,7 @@ python inference.py
 测试两个推理配置：稳定模式（低 temperature）和随机模式（高 temperature）。
 你可以修改 generate_answer 中的问题来测试自己的 query。
 
-4. RAG 检索链（测试混合检索）
+### 4. RAG 检索链（测试混合检索）
 ```bash
 python langchain_rag.py
 ```
@@ -111,7 +111,7 @@ python langchain_rag.py
 使用 Qwen 模型（微调后）生成答案
 如果还没有合并模型，可暂时用原始 Qwen，但推荐使用 merged_model。
 
-5. Agentic RAG（多工具 + 记忆）
+### 5. Agentic RAG（多工具 + 记忆）
 bash
 python langchain_agent.py
 这是一个更智能的对话系统：
@@ -126,7 +126,7 @@ python langchain_agent.py
 
 ⚠️ 第一次运行 Agent 可能会慢，因为要加载模型。耐心等待就好。
 
-6. 工程优化演示
+### 6. 工程优化演示
 ```bash
 python engineering_optimization.py
 ```
@@ -138,7 +138,7 @@ python engineering_optimization.py
 
 日志监控：记录请求到 rag_agent.log，便于排查
 
-💬 结语
+## 💬 结语
 一起优化这个模型！
 
 Happy Coding！
